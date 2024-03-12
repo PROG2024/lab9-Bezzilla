@@ -28,6 +28,7 @@ class CircleTest(unittest.TestCase):
         self.circle.add_area(self.circle)
 
     def test_add_zero_radius(self):
+        """test add zero radius """
         self.circle.add_area(Circle(0))
         self.assertEquals(self.circle.get_radius(), self.radius)
         self.assertEquals(self.circle.get_area(), self.area)
