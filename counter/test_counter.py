@@ -16,10 +16,18 @@ class TestCounter(unittest.TestCase):
 
     def setUp(self):
         self.counter = Counter()
+        self.counter2 = Counter
 
-    def test_normal_count(self):
+    def test_New_references(self):
+        self.counter2 = Counter()
+        self.assertEqual(self.counter.count, self.counter2.count)
+
+    def test_new_references_with_increment(self):
+        self.counter2 = Counter()
         self.counter.increment()
-        self.assertEquals(self.counter.count, 1)
+        self.assertEqual(self.counter.count, self.counter2.count)
+        self.counter2.increment()
+        self.assertEqual(self.counter.count, self.counter2.count)
 
 
 if __name__ == '__main__':

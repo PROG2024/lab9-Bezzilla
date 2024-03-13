@@ -13,40 +13,41 @@
 class Counter:
     __instance = None
 
-    def __init__(self):
+    def __str__(self):
+        """return str count"""
+        return f"{self.__count}"
+
+    def __new__(cls, *args, **kwargs):
         """
         >>> counter = Counter()
         >>> counter.count
-        1
+        0
         >>> counter.count        # invoking count doesn't change anything
-        1
+        0
         >>> counter.increment()  # add 1 and return the new count
-        2
+        1
         >>> counter2 = Counter()
         >>> counter2 is counter
         True
         >>> counter2.count       # shares same count
-        2
+        1
         >>> counter2.increment()  # add 1 and return the new count
-        3
+        2
         >>> counter.count
-        3
+        2
         """
-        self.__count = 0
-
-    def __str__(self):
-        return f"{self.__count}"
-
-    def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
             cls.__instance = super(Counter, cls).__new__(cls)
+            cls.__instance.__count = 0
         return cls.__instance
 
     @property
     def count(self):
+        """return count value"""
         return self.__count
 
     def increment(self):
+        """add number to count"""
         self.__count += 1
         return self.__count
 
