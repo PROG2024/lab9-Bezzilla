@@ -7,3 +7,20 @@
 
    You can use pytest or unittest.
 """
+
+import unittest
+from counter import Counter
+
+
+class TestCounter(unittest.TestCase):
+
+    def setUp(self):
+        self.counter = Counter()
+
+    def test_normal_count(self):
+        self.counter.increment()
+        self.assertEquals(self.counter.count, 1)
+
+
+if __name__ == '__main__':
+    unittest.main()
